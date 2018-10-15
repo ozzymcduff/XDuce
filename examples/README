@@ -1,0 +1,22 @@
+README for XDuce examples 
+
+Author: Haruo Hosoya (hahosoya@cis.upenn.edu)
+Date: Mar 28/2000
+
+
+In this directory, we have the following examples.
+
+  addrbook.q	   Manipulation of a simple address book by using
+		   pattern matching with regular expression types
+
+  folder.q	   A simple example of type recursion, both horizontal
+		   and vertical
+
+  simplebib.q	   A database integration example by using union types 
+		  
+  bookmarks.q	   Manipulation of Netscape Bookmarks
+
+  html2latex.q	   Convertion of HTML file into LaTeX format
+
+  diff.q	   Implementation of Chawathe's tree diff algorithm 
+

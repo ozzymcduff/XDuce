@@ -1,0 +1,180 @@
+0.5.0
+  * Added a support for parametric polymorphism.  
+    Types can contain type variables written "ty X", e.g.,
+
+      type AList = entry[key[String], data[ty X]]*
+
+    and type substitution form written "T{{ X -> U }}" to mean
+    the substitution of U for X in T, e.g.,
+
+      AList{{X -> Bib}}
+
+    Functions can be polymorphic, e.g.,
+
+      fun search {{X}} (val data as a[ty X]) : b[ty X] = ...
+      
+    where type parameters can be declared and parameter types and the result type
+    can mention type parameters.  
+
+    An application to polymorphic functions does not need type arguments.  
+    They are inferred automatically.
+
+    A type variable can be associated with its constraint like "ty X as T".
+    Then, a bare type variable "ty X" abbreviates "ty X as AnyElm".
+
+    Built-in functions can also be polymorphic:    
+
+      extern f : { X } a[ty X] -> b[ty X]
+
+    Restrictions:
+    + Type variables can be ranged over by one-element types, so this is an error:
+
+        fun wrong {{X}} (val x as a[ty X as (a[],b[] )]) : Any = x
+
+    + Marking-ambiguous type parameters yield a warning, e.g.,
+
+        fun ambig {{X}} (val x as (a[ty X],c[] | a[b[]],ty X)) : Any = x
+
+    + Patterns cannot mention type variables:    
+
+        fun wrong {{X}} (val x as a[ty X]) : Any =
+          filter x {
+            (val y as a[ty X]) { y }
+        }
+
+    + A substituting type cannot mention a recursive type name:
+
+        type Wrong = AList{{X -> Wrong}}
+
+  * See also "polysample" example.
+
+0.4.2
+  * Bugfix in emptiness checks
+  * Bugfix in Makefile
+
+0.4.0
+  * Added a support for regular expression filters.  You can write
+      filter v {
+        filter-form
+      }
+    to process a value v.  As a filter form, you can use an
+    arbitrary regular expression over pattern clauses.  That is,
+    you can use alternation filters as in
+      filter v {
+        pattern { body-expr }
+      | ...
+      | pattern { body-expr }
+      }
+    (just like previous pattern matches), repetition filters as in
+      filter v {
+      ( pattern { body-expr } )*
+      }
+    concatenation filters as in
+      filter v {
+      ( pattern { body-expr } ),
+      ( pattern { body-expr } )
+      }
+    and more!  See examples for other kinds of filters.
+    (Note that each pattern clause has the form: pattern { body-expr })
+  * Added a namespace support.  You can declare a namespace prefix by
+      namespace prefix = "uri"
+    and use it by prepending to labels like:
+      prefix:label[...]
+    Prefixes can be added to labels in expressions, types, patterns,
+    and filters.  The default namespace can be declared by:
+      namespace = "uri"
+    Labels without prefixes are regarded to have the default
+    namespace.  
+  * A new pattern variable notation: "P as x" (the same as "val x as
+  P".  The old syntax remains for backward compatibility.
+
+0.3.0
+  * Switched to O'Caml 3.04 and PXP-1.1.3
+  * Added a support for attributes in the style of RELAX NG.
+  Attributes and elements can be treated in a similar way, where
+  ordering among attributes does not matter.  For types, patterns, and
+  expressions, we write an attribute like
+        @name[content]
+  For example, we can write the following type for "person" elements
+  containing a "name" element or attribute, and a "tel" element or
+  attribute.
+        person[(name[String] | @name[String]), 
+               (tel[String] | @tel[String])]
+  * Accordingly, dropped the old attribute syntax (like
+  name@(attrs)[content]). 
+  * Dropped subtagging
+  * Simplified the treatment of white spaces in XML parsing: parser
+  introduces a special node "MWs" of value for white spaces; validator
+  ignores nodes of this kind, instead of performing white space
+  elimination.  (Tentative design)
+
+0.2.4
+  * Added multi-arguments support
+      o funtion definition: fun f(pattern)...(pattern) : type = ...
+      o external declaration: extern f : (type)...(type) -> type
+      o function application: f(expr)...(expr)
+  * Added copy_label construct:
+        copy_label(expr1)[expr2]
+    to construct a labelled value whose label is the same as expr1 and
+    the content is expr2
+  * Added random_int and randim_float built-ins
+  * Changed the type of equality/inequality tests to (Any)(Any) -> Bool
+
+0.2.3
+  * Debut to SourceForge
+  * Reorganized the directory structure
+
+0.2.2
+  * Improve the speed of type inference
+  * Arbitrary-match semantics of pattern matching (as opposed to
+    first-match)
+  * Major rewriting and reorganization of code
+  * Label classes
+  * Ambiguity check is now warning (we can reject ambiguous patterns
+    by option -rejectambig)
+  * Super ad-hoc modules
+
+0.2.1
+  * Improved validation mechanism and error messages
+  * Removed obsolete options
+  * Added pattern ambiguity check (option -ambig)
+  * Added pattern optimization (option -patopt)
+  * Added pattern redundancy check
+  * Added pattern linearity check
+  * Reorganized the examples directory
+  * ~expr[expr] syntax is changed to:
+    relabel expr[expr]
+  * A prefix can be added to each type name in incorporated DTDs by
+    writing like:
+      import_dtd (prefix = "Html_") "xhtml1-transitional.dtd"
+  * Changed the default attribute type from Any to AnyAttrs (see
+    pervasive.q)
+  * Changed coercion syntax
+    + For letting the system report the error:
+      validate <value> with <type>
+    + For handling the case non coercible:
+      coerce <value> with <type> else <expr-to-handle>  
+
+0.2.0
+  * Syntax is completely renewed in
+    + function definitions
+    + patterns
+  * Syntax for supporting attributes
+  * Turned off pattern optimization (too unstable)
+  * Type inference for patterns supports inference on non-tail pattern 
+    variables
+
+0.1.10
+  * Added save_xml add-on function.
+  * Fixed small bug
+  * Reorganized add-ons in addon directory
+
+0.1.9
+  * Added OR-patterns.
+
+0.1.8
+  * Added patterns in let bindings.
+  * Added exceptions.
+
+0.1.7
+  * First public release.

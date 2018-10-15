@@ -1,0 +1,130 @@
+ctx.cmi: finfo.cmo sym.cmi syn.cmo 
+desugtype.cmi: finfo.cmo htype.cmi syn.cmo 
+htype.cmi: base.cmo label.cmi syn.cmo 
+label.cmi: base.cmo sym.cmi 
+ns.cmi: sym.cmi 
+sym.cmi: base.cmo 
+top.cmi: syn.cmo 
+typath.cmi: base.cmo label.cmi 
+wf.cmi: ctx.cmi finfo.cmo syn.cmo 
+bltin.cmo: base.cmo finfo.cmo sym.cmi syn.cmo synutil.cmo 
+bltin.cmx: base.cmx finfo.cmx sym.cmx syn.cmx synutil.cmx 
+check.cmo: base.cmo util/counter.cmi ctx.cmi desugtype.cmi finfo.cmo \
+    htype.cmi label.cmi util/listutil.cmi patmatch.cmo pref.cmo syn.cmo \
+    synutil.cmo util/timer.cmi typath.cmi typeop.cmo 
+check.cmx: base.cmx util/counter.cmx ctx.cmx desugtype.cmx finfo.cmx \
+    htype.cmx label.cmx util/listutil.cmx patmatch.cmx pref.cmx syn.cmx \
+    synutil.cmx util/timer.cmx typath.cmx typeop.cmx 
+ctx.cmo: finfo.cmo sym.cmi syn.cmo ctx.cmi 
+ctx.cmx: finfo.cmx sym.cmx syn.cmx ctx.cmi 
+desugtype.cmo: ctx.cmi finfo.cmo htype.cmi label.cmi pref.cmo \
+    util/setutil.cmo util/sortedlist.cmi syn.cmo util/timer.cmi typeop.cmo \
+    desugtype.cmi 
+desugtype.cmx: ctx.cmx finfo.cmx htype.cmx label.cmx pref.cmx \
+    util/setutil.cmx util/sortedlist.cmx syn.cmx util/timer.cmx typeop.cmx \
+    desugtype.cmi 
+eval.cmo: base.cmo bltin.cmo check.cmo ctx.cmi finfo.cmo patmatch.cmo \
+    pref.cmo util/printing.cmi sym.cmi syn.cmo synutil.cmo typath.cmi 
+eval.cmx: base.cmx bltin.cmx check.cmx ctx.cmx finfo.cmx patmatch.cmx \
+    pref.cmx util/printing.cmx sym.cmx syn.cmx synutil.cmx typath.cmx 
+htype.cmo: base.cmo util/counter.cmi label.cmi util/listutil.cmi \
+    util/printing.cmi util/setutil.cmo util/sortedlist.cmi sym.cmi syn.cmo \
+    util/timer.cmi htype.cmi 
+htype.cmx: base.cmx util/counter.cmx label.cmx util/listutil.cmx \
+    util/printing.cmx util/setutil.cmx util/sortedlist.cmx sym.cmx syn.cmx \
+    util/timer.cmx htype.cmi 
+label.cmo: base.cmo util/counter.cmi util/listutil.cmi util/printing.cmi \
+    sym.cmi label.cmi 
+label.cmx: base.cmx util/counter.cmx util/listutil.cmx util/printing.cmx \
+    sym.cmx label.cmi 
+lexer.cmo: finfo.cmo parser.cmi 
+lexer.cmx: finfo.cmx parser.cmx 
+main.cmo: bltin.cmo check.cmo util/counter.cmi ctx.cmi desugtype.cmi eval.cmo \
+    util/filing.cmi finfo.cmo htype.cmi lexer.cmo addon/loadbib.cmo ns.cmi \
+    parsedtd.cmo parser.cmi pref.cmo sym.cmi syn.cmo synutil.cmo \
+    util/timer.cmi top.cmi typath.cmi 
+main.cmx: bltin.cmx check.cmx util/counter.cmx ctx.cmx desugtype.cmx eval.cmx \
+    util/filing.cmx finfo.cmx htype.cmx lexer.cmx addon/loadbib.cmx ns.cmx \
+    parsedtd.cmx parser.cmx pref.cmx sym.cmx syn.cmx synutil.cmx \
+    util/timer.cmx top.cmx typath.cmx 
+ns.cmo: util/counter.cmi sym.cmi ns.cmi 
+ns.cmx: util/counter.cmx sym.cmx ns.cmi 
+parsedtd.cmo: base.cmo ctx.cmi util/filing.cmi finfo.cmo ns.cmi pref.cmo \
+    sym.cmi syn.cmo top.cmi 
+parsedtd.cmx: base.cmx ctx.cmx util/filing.cmx finfo.cmx ns.cmx pref.cmx \
+    sym.cmx syn.cmx top.cmx 
+parser.cmo: base.cmo bltin.cmo finfo.cmo parsedtd.cmo sym.cmi syn.cmo \
+    synutil.cmo top.cmi parser.cmi 
+parser.cmx: base.cmx bltin.cmx finfo.cmx parsedtd.cmx sym.cmx syn.cmx \
+    synutil.cmx top.cmx parser.cmi 
+patmatch.cmo: base.cmo htype.cmi label.cmi util/listutil.cmi util/setutil.cmo \
+    util/sortedlist.cmi sym.cmi syn.cmo synutil.cmo typath.cmi 
+patmatch.cmx: base.cmx htype.cmx label.cmx util/listutil.cmx util/setutil.cmx \
+    util/sortedlist.cmx sym.cmx syn.cmx synutil.cmx typath.cmx 
+sym.cmo: base.cmo util/counter.cmi sym.cmi 
+sym.cmx: base.cmx util/counter.cmx sym.cmi 
+syn.cmo: base.cmo util/counter.cmi finfo.cmo sym.cmi 
+syn.cmx: base.cmx util/counter.cmx finfo.cmx sym.cmx 
+synutil.cmo: base.cmo ctx.cmi finfo.cmo util/nonduplist.cmi ns.cmi \
+    util/sortedlist.cmi sym.cmi syn.cmo 
+synutil.cmx: base.cmx ctx.cmx finfo.cmx util/nonduplist.cmx ns.cmx \
+    util/sortedlist.cmx sym.cmx syn.cmx 
+top.cmo: base.cmo check.cmo ctx.cmi desugtype.cmi eval.cmo finfo.cmo \
+    htype.cmi ns.cmi pref.cmo syn.cmo synutil.cmo util/timer.cmi typeop.cmo \
+    top.cmi 
+top.cmx: base.cmx check.cmx ctx.cmx desugtype.cmx eval.cmx finfo.cmx \
+    htype.cmx ns.cmx pref.cmx syn.cmx synutil.cmx util/timer.cmx typeop.cmx \
+    top.cmi 
+typath.cmo: base.cmo label.cmi typath.cmi 
+typath.cmx: base.cmx label.cmx typath.cmi 
+typeop.cmo: util/counter.cmi htype.cmi label.cmi util/listutil.cmi pref.cmo \
+    util/setutil.cmo util/sortedlist.cmi syn.cmo util/timer.cmi 
+typeop.cmx: util/counter.cmx htype.cmx label.cmx util/listutil.cmx pref.cmx \
+    util/setutil.cmx util/sortedlist.cmx syn.cmx util/timer.cmx 
+wf.cmo: ctx.cmi finfo.cmo util/sortedlist.cmi sym.cmi syn.cmo wf.cmi 
+wf.cmx: ctx.cmx finfo.cmx util/sortedlist.cmx sym.cmx syn.cmx wf.cmi 
+util/counter.cmo: util/counter.cmi 
+util/counter.cmx: util/counter.cmi 
+util/filing.cmo: util/filing.cmi 
+util/filing.cmx: util/filing.cmi 
+util/listutil.cmo: util/listutil.cmi 
+util/listutil.cmx: util/listutil.cmi 
+util/nonduplist.cmo: util/nonduplist.cmi 
+util/nonduplist.cmx: util/nonduplist.cmi 
+util/printing.cmo: util/printing.cmi 
+util/printing.cmx: util/printing.cmi 
+util/setutil.cmo: util/sortedlist.cmi 
+util/setutil.cmx: util/sortedlist.cmx 
+util/sortedlist.cmo: util/listutil.cmi util/sortedlist.cmi 
+util/sortedlist.cmx: util/listutil.cmx util/sortedlist.cmi 
+util/timer.cmo: util/timer.cmi 
+util/timer.cmx: util/timer.cmi 
+bibtex/bibtex.cmo: bibtex/bibtex.cmi 
+bibtex/bibtex.cmx: bibtex/bibtex.cmi 
+bibtex/bibtex_lexer.cmo: bibtex/bibtex_parser.cmi 
+bibtex/bibtex_lexer.cmx: bibtex/bibtex_parser.cmx 
+bibtex/bibtex_parser.cmo: bibtex/bibtex.cmi bibtex/bibtex_parser.cmi 
+bibtex/bibtex_parser.cmx: bibtex/bibtex.cmx bibtex/bibtex_parser.cmi 
+bibtex/latex_accents.cmo: bibtex/latex_accents.cmi 
+bibtex/latex_accents.cmx: bibtex/latex_accents.cmi 
+bibtex/bibtex_parser.cmi: bibtex/bibtex.cmi 
+addon/loadbib.cmo: base.cmo bibtex/bibtex.cmi bibtex/bibtex_lexer.cmo \
+    bibtex/bibtex_parser.cmi bltin.cmo util/filing.cmi finfo.cmo \
+    bibtex/latex_accents.cmi util/listutil.cmi pref.cmo sym.cmi syn.cmo \
+    synutil.cmo 
+addon/loadbib.cmx: base.cmx bibtex/bibtex.cmx bibtex/bibtex_lexer.cmx \
+    bibtex/bibtex_parser.cmx bltin.cmx util/filing.cmx finfo.cmx \
+    bibtex/latex_accents.cmx util/listutil.cmx pref.cmx sym.cmx syn.cmx \
+    synutil.cmx 
+addon/loadxml.cmo: base.cmo bltin.cmo util/filing.cmi util/listutil.cmi \
+    ns.cmi pref.cmo util/sortedlist.cmi sym.cmi syn.cmo 
+addon/loadxml.cmx: base.cmx bltin.cmx util/filing.cmx util/listutil.cmx \
+    ns.cmx pref.cmx util/sortedlist.cmx sym.cmx syn.cmx 
+addon/pervasive.cmo: base.cmo bltin.cmo pref.cmo sym.cmi syn.cmo synutil.cmo 
+addon/pervasive.cmx: base.cmx bltin.cmx pref.cmx sym.cmx syn.cmx synutil.cmx 
+addon/strproc.cmo: base.cmo bltin.cmo sym.cmi syn.cmo 
+addon/strproc.cmx: base.cmx bltin.cmx sym.cmx syn.cmx 
+addon/xpath.cmo: base.cmo bltin.cmo syn.cmo synutil.cmo 
+addon/xpath.cmx: base.cmx bltin.cmx syn.cmx synutil.cmx 
+addon/xslt.cmo: bltin.cmo sym.cmi syn.cmo 
+addon/xslt.cmx: bltin.cmx sym.cmx syn.cmx 

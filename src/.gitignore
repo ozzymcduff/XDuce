@@ -1,0 +1,10 @@
+*.cmi
+*.cmx
+*.cmo
+pref.ml
+parser.output
+parser.ml
+parser.mli
+lexer.ml
+xduce.opt
+xduce

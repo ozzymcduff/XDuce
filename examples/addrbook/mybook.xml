@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<addrbook>
+  <person>
+    <name>Haruo Hosoya</name>
+    <email>hahosoya</email>
+    <email>haruo</email>
+  </person>
+  <person>
+    <name>Jerome Vouillon</name>
+    <tel>123-456-789</tel>
+    <email>vouillon</email>
+  </person>
+  <person>
+    <name>Benjamin Pierce</name>
+    <email>pierce</email>
+  </person>
+</addrbook>      

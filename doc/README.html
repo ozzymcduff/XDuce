@@ -1,0 +1,160 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>XDuce: A Typed XML Processing Language</TITLE>
+</HEAD>
+<BODY>
+<H1>XDuce: A Typed XML Processing Language</H1>
+
+
+<H2>Overview</H2>
+<P>XDuce ("transduce") is a typed programming language that is
+specifically designed for processing XML data. One can read an XML
+document as an XDuce value, extract information from it or convert it
+to another format, and write out the result value as an XML
+document. Since XDuce is statically typed, XDuce programs never crash
+at run time and the resulting XML documents always conform specified
+types. 
+</P>
+<P>XDuce has several notable features. 
+<OL TYPE="1">
+	<LI>Regular expression types, which are similar
+in spirit to Document Type Definitions (DTD).
+	<LI>A powerful notion of subtyping. (It allows
+any subtyping relation that you may expect from your intuition on
+inclusion relation of regular expressions.) It not only gives
+substantial flexibility in programming, but also is useful for schema
+evolution or integration.
+	<LI>Regular expression pattern matching. In
+addition to ML-like patterns, we can match values against regular
+expression types.
+        <li>Attribute types in the style of RELAX NG.  We can mix both
+attribute constraints and element constraints in the same regular expression notation.
+        <li>Regular expression filters, an extension of pattern matching
+where we can form a regular expression over pattern clauses.
+        <li>Parametric polymorphism.
+</OL>
+</P>
+
+
+<H2>Implementation Status</H2>
+
+<P>This implementation is a part of our ongoing research.  The
+language design has not been finished, and some algorithmic issues in
+type checking and the run-time system still remain.  This language
+system is likely to be drastically changed in near future.  So please
+do not depend on this software.  On the other hand, any comments and
+suggestions are welcome! </P>
+
+
+<H2>System Requirements</H2>
+
+<P>XDuce system is solely written in <A HREF="http://caml.inria.fr/ocaml/distrib.html">the O'Caml language</A>.  In
+principle, XDuce should run on any platform that O'Caml supports.  In
+particular, we have checked that XDuce works on the following.</P>
+<UL>
+	<LI>SunOS 5.7
+	<LI>Intel Linux
+	<LI>LinuxPPC
+	<LI>IRIX
+        <li>Mac OS X
+</UL>
+
+<P>We have not yet tested compilation on Windows.  However, since
+recent versions of O'Caml and the libraries that XDuce depends on
+support Windoes with Cygwin, XDuce should work on this platform in
+principle.  
+</P>
+
+<H2>Building XDuce</H2>
+<OL TYPE="1">
+	<LI>Make sure that GNU make or its equivalent is installed.
+	<LI>Install <A HREF="http://caml.inria.fr/ocaml/distrib.html">
+	O'Caml</A> (newer than 3.04; older ones may not work) if not
+yet installed.
+	<LI>Install the <A HREF="http://www.ocaml-programming.de/packages/documentation/findlib/">findlib</A> tool (newer than 0.6.2).
+	<LI>Install the following libraries in this order.
+	<OL TYPE="a">
+		<LI><A HREF="http://www.ocaml-programming.de/packages/documentation/netstring">netstring</A> (newer than 0.10.1)
+		<LI><A HREF="http://www.ocaml-programming.de/packages/documentation/pxp">PXP</A> (newer than 1.1.3)
+	</OL>
+	<P>Note: You have to build each library by typing "make opt"
+in order to build xduce by the native O'Caml compiler (type "make
+all" if you want to compile the bytecode version of xduce).  </P>
+	<P>Note: You can also install all the above software by using
+<a href="http://godi.ocaml-programming.de/">GODI</a> (package manager for O'Caml libraries).  In this case, replace netstring with ocamlnet.</P>
+
+	<LI>Compile XDuce as follows.
+	<OL TYPE="a">
+		<LI>tar xvfz xduce-xxx.tar.gz
+		(where xxx is the version number of XDuce you downloaded).
+		<LI>cd xduce-xxx
+		<LI>make
+	</OL>
+
+<P>It will produce an executable file named xduce.opt in the
+xduce-xxx directory.  </P>
+
+<P>On platforms where native O'Caml compiler is not supported, still
+bytecode version may work.  For this compilation, type:
+  <BLOCKQUOTE>make debug</BLOCKQUOTE>
+This will yield an executable file xduce.  The usage is the same.
+</P>
+
+	<LI>At the moment, we do not provide any automatic
+installation mechanism.  You may move the executable wherever you
+want.  Note, however, it directly refers to the xduce-xxx/lib
+directory.  Make sure that this directory is accessible when you use
+the executable.  Or, if you need to move the lib directory, then
+specify the new location by -path option:
+	<BLOCKQUOTE>
+	xduce.opt -path &lt;new-location&gt; ...
+	</BLOCKQUOTE>
+
+ </OL>
+
+<H2>Usage</H2>
+
+<P>type
+<BLOCKQUOTE>xduce.opt &lt;XDuce program file&gt;</BLOCKQUOTE>
+to run a XDuce program.  Type
+<BLOCKQUOTE>xduce.opt -help</BLOCKQUOTE>
+to see options.
+</P>
+
+<H2>Documentation</H2>
+
+<P>There is no user's manual since the language design is not yet
+settled.  The programs found in "examples" directory would be useful
+for understanding the language.  Also, the files in "lib" directory
+(such as "pervasive.q" and "xml.q") would be worth seeing.  </P>
+
+<P>
+For more information, visit our web page:
+
+<BLOCKQUOTE><A
+HREF="http://xduce.sourceforge.net">http://xduce.sourceforge.net</A></BLOCKQUOTE>
+It also provides some technical papers.
+
+</P>
+
+<H2>Contact</H2>
+
+Haruo Hosoya (hahosoya@users.sourceforge.net)
+
+
+<H2>Acknowledgement</H2>
+<UL>
+	<LI>We especially thank Volker Renneberg for his tremendous
+contributions to our implementation in bug reports, suggestions, and
+additional code.
+	<LI>Some sources files from the bibtex2html tool by Jean-Christophe
+Filliatre and Claude Marche are incorporated (in bibtex directory).
+</UL>
+
+<HR>
+
+$Id: README.html,v 1.5 2005/04/06 07:05:06 hahosoya Exp $
+
+</BODY>
+</HTML>

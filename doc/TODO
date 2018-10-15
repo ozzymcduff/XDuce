@@ -1,0 +1,51 @@
+- Reconsider the ambiguity condition: too strong right now
+
+- formal parameter too wordy
+
+- argv does not contain the program name
+- branch prediction
+- f*
+
+=== Postponed ones ===
+
+- Namespaces 
+  -- For the moment, allow a prefix to dtd type names
+
+- Comments / stars: (x as (a|b)* )
+  -- There WILL be other conflicts with other syntax.  
+     Decide it later.
+
+
+------------------- Language Design --------------------
+
+* label/type polymophism?
+
+* cyclic values
+
+type A = [name: String, address: String, supervisor: (A | )]*
+type B = [name: String, supervisor: (B | )]*
+
+fun a (:B)
+  name: nm :: String, address: addr :: String, 
+  supervisor: sup <- s, next <- a 
+    -> name, sup, next
+|   -> 
+
+fun s (: B | )
+  sup <- a
+    -> sup
+|   ->
+
+val charles = name: "Charles", address: "there", supervisor: 
+val john = name: "John", address: "here", supervisor: charles
+val db = charles, john
+
+val a[db]
+
+==> 
+  charles', john'
+  WHERE charles' = name: "Charles", supervisor: 
+        john' = name: "John", supervisor: charles'
+
+
+
